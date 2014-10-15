@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var markdown = require('markdown-js')
 
-var routes = require('./routes');
+var routes = require('./routes/');
 
 var app = express();
 

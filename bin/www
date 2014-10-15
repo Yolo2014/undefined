@@ -1,10 +1,17 @@
 #!/usr/bin/env node
-require('coffee-script/register');
-var debug = require('debug')('undefined');
-var app = require('../app');
+// var debug = require('debug')('undefined');
 
-app.set('port', process.env.PORT || 6116);
+require('../_init');
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
-});
+var time = process.hrtime();
+var server = require('../app');
+var config = require('config');
+var moment = require('moment');
+
+module.exports = server;
+
+server.listen(config.web.port, function() {
+  time  process.hrtime(time);
+  console.log("%s http service is listening on port %d in %s mode used %d.%d seconds",
+    moment().format('YYYY-MM-DD HH:mm:ss'), config.web.port, process.env.NODE_ENV, time[0], time[1]);
+})
