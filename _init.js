@@ -21,3 +21,5 @@ var config = require('config');
 process.env.DEBUG = process.env.DEBUG || config.debug;
 
 require('./_promisify');
+
+require('./crons/weibo')()

@@ -29,6 +29,11 @@ module.exports =
         user: 'fengtian'
         password: 'fengtian'
 
+  redis:
+    host: 'localhost'
+    port: 6379
+
   cron:
-    active: true
-    time: '00 00 09 * * *'
+    weibo:
+      active: true
+      time: '00 30 09 * * *'

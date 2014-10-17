@@ -75,7 +75,7 @@ function fillForm() {
 
   //waiting for login
   setTimeout(function() {
-    fs.write('./logs/result_page_' + account + '.html', page.content, 'w');
+    fs.write('./media/weibo/login/logs/result_page_' + account + '.html', page.content, 'w');
     //waiting for write
     console.log("Waiting for write for 5 sec...");
     function nextAccount(){
@@ -92,11 +92,11 @@ function fillForm() {
       }
       else {
         console.log("no more account, exit");
-        fs.write('./cookies.txt', JSON.stringify(cookies), 'w');
-        fs.write('./logs/debug.log', debugInfo);
+        fs.write('./media/weibo/login/cookies.txt', JSON.stringify(cookies), 'w');
+        fs.write('./media/weibo/login/logs/debug.log', debugInfo);
         setTimeout(phantom.exit, 1000);
       }
     }
     setTimeout(nextAccount, 5000);
-  }, 50000)
+  }, 20000)
 }

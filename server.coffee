@@ -1,4 +1,4 @@
-epxress = require 'express'
+express = require 'express'
 http = require 'http'
 config = require 'config'
 moment = require 'moment'
@@ -12,18 +12,13 @@ module.exports = server = http.createServer app
 
 app.set 'view engine', 'jade'
 app.set 'views', __dirname + '/views'
-app.engine 'hbs', engines.handlebars
-
-app.set 'view engine', 'jade'
-app.set 'views', __dirname + '/views'
-app.engine 'hbs', engines.handlebars
 
 app.use bodyParser limit: '5mb'
 app.use cookieParser()
 app.use cookieSession secret: config.session.secret
 
 require('./mount')(app)
-app.use stylus
+# app.use stylus
 app.use '/public', express.static __dirname + '/public'
 
 app.use (err, req, res, next) ->

@@ -4,14 +4,14 @@
 require('../_init');
 
 var time = process.hrtime();
-var server = require('../app');
+var server = require('../server');
 var config = require('config');
 var moment = require('moment');
 
 module.exports = server;
 
 server.listen(config.web.port, function() {
-  time  process.hrtime(time);
+  time = process.hrtime(time);
   console.log("%s http service is listening on port %d in %s mode used %d.%d seconds",
     moment().format('YYYY-MM-DD HH:mm:ss'), config.web.port, process.env.NODE_ENV, time[0], time[1]);
 })
