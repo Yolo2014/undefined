@@ -6,7 +6,7 @@ request = require 'superagent'
 Promise = require 'bluebird'
 
 Cookies = require './cookies'
-# ParseFeeds = require './parse_feeds'
+ParseFeeds = require './parse_feeds'
 
 module.exports = (req, res, next) ->
 
@@ -53,13 +53,9 @@ module.exports = (req, res, next) ->
       getPagePromise url, query, cookies
       .then (page) ->
         return throw new Error "ooops, no content!" if !page or !page.text
-        page
+        ParseFeeds page.text
 
   Promise.all getPagePromises
   .then (result) ->
     res.send result
-      # metadata:
-      #   loginUsers: _.pluck result, 'loginUser'
-      # totalCount: result[0]?.totalCount
-      # data: (_.flatten _.pluck result, "feeds").slice offset, offset + limit
   .catch next

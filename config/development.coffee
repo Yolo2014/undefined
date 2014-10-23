@@ -36,4 +36,4 @@ module.exports =
   cron:
     weibo:
       active: true
-      time: '00 30 09 * * *'
+      time: '00 10 */2 * * *'
