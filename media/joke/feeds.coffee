@@ -4,6 +4,8 @@ _ = require 'underscore'
 request = require 'superagent'
 Promise = require 'bluebird'
 
+Feed = require __basename + '/models/media/feed'
+
 ParseFeeds = require './parse_feeds'
 
 module.exports = (req, res, next) ->
@@ -40,5 +42,18 @@ module.exports = (req, res, next) ->
 
   Promise.all getPagePromises
   .then (result) ->
-    res.send result[0]
+    _.map result[0], (item) ->
+      return if item.title is undefined
+      feed = new Feed
+        title: item.title
+        content: item.content
+        image: item.image
+        like: item.like or 0
+        dislike: item.dislike or 0
+      feed.saveAsync()
+      .then (result) ->
+        res.end()
+      .catch (err) ->
+        console.log err
+
   .catch next

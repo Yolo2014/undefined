@@ -22,12 +22,12 @@ module.exports =
         database: 'epop'
         activte: true
     mongo:
-      weibo:
+      joke:
         host: 'localhost'
         port: '27017'
-        database: 'express'
+        database: 'media'
         user: 'fengtian'
-        password: 'fengtian'
+        pass: 'fengtian'
 
   redis:
     host: 'localhost'
